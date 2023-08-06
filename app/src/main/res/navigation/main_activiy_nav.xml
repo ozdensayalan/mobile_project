@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activiy_nav"
+    app:startDestination="@id/anasayfaFragment">
+
+    <fragment
+        android:id="@+id/anasayfaFragment"
+        android:name="com.example.yemeksiparisi.ui.fragment.AnasayfaFragment"
+        android:label="fragment_anasayfa"
+        tools:layout="@layout/fragment_anasayfa" >
+        <action
+            android:id="@+id/yemekDetay"
+            app:destination="@id/yemekFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sepetFragment"
+        android:name="com.example.yemeksiparisi.ui.fragment.SepetFragment"
+        android:label="fragment_sepet"
+        tools:layout="@layout/fragment_sepet" />
+    <fragment
+        android:id="@+id/yemekFragment"
+        android:name="com.example.yemeksiparisi.ui.fragment.YemekFragment"
+        android:label="fragment_yemek"
+        tools:layout="@layout/fragment_yemek" >
+        <action
+            android:id="@+id/sepeteGit"
+            app:destination="@id/sepetFragment" />
+        <argument
+            android:name="yemek"
+            app:argType="com.example.yemeksiparisi.data.entity.Yemekler" />
+    </fragment>
+</navigation>

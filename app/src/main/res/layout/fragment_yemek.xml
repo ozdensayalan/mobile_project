@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name = "yemekToolbarBaslik"
+            type="String" />
+        <variable
+            name = "yemekFragment"
+            type="com.example.yemeksiparisi.ui.fragment.YemekFragment" />
+        <variable
+            name = "yemekNesnesi"
+            type="com.example.yemeksiparisi.data.entity.Yemekler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.YemekFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarYemek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{yemekToolbarBaslik}"
+            app:titleTextColor="@color/white"
+            app:titleMarginStart="20dp"
+            app:titleMarginEnd="20dp"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img"
+            app:layout_constraintBottom_toTopOf="@+id/TextViewFiyat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarYemek"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/TextViewFiyat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{String.valueOf(yemekNesnesi.yemek_fiyat) + " TL"}'
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/TextViewYemek"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/TextViewYemek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="145dp"
+            android:text="@{yemekNesnesi.yemek_adi}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewFiyat"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="61dp"
+            android:layout_height="69dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="460dp"
+            android:layout_marginEnd="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextAdet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Adet" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> yemekFragment.kaydet(yemekNesnesi.yemek_adi,yemekNesnesi.yemek_resim_adi,yemekNesnesi.yemek_fiyat,editTextAdet.getText().toString())}"
+            android:text="Sepete Ekle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewYemek"
+            app:layout_constraintVertical_bias="0.5" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
